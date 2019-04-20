@@ -1,0 +1,16 @@
+{
+  "name": "controlling_ikea_tradfri_with_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "device_info.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "conf": "^4.0.1",
+    "delay": "^4.2.0",
+    "node-tradfri-client": "^1.5.0"
+  }
+}
