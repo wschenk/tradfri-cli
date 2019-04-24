@@ -6,8 +6,7 @@ tags:
   - zigbee
   - IKEA
   - node
-date: "2019-04-20"
-draft: true
+date: "2019-04-24"
 repository: https://github.com/wschenk/tradfri-cli
 remote: git@github.com:wschenk/tradfri-cli.git
 ---
@@ -88,7 +87,7 @@ node device_changer.js 65538 --on --color efd275 65543 --brightness 50 --on 6554
 
 ## Scenes and Rooms
 
-The library also has methods to deal with scenes and groups all at once.  Let's take a look at a group watcher:
+The library also has methods to deal with scenes and rooms all at once.  Let's take a look at a room watcher:
 
 [`scenes.js`](scenes.js):
 

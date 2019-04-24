@@ -2,10 +2,10 @@ const connection = require( './connection' );
 const delay      = require( 'delay' );
 const devices    = require( './devices')
 
-function printGroupInfo( tradfri, collection ) {
-  const group = collection.group
-  const scenes = collection.scenes
-  console.log( "ROOM", group.instanceId, group.name, "Current Scene:", scenes[group.sceneId].name )
+function printRoomInfo( tradfri, room ) {
+  const group = room.group
+  const scenes = room.scenes
+  console.log( "ROOM", group.instanceId, room.name, "Current Scene:", scenes[group.sceneId].name )
   console.log( "DEVICES")
   for( const deviceId of group.deviceIDs ) {
     devices.printDeviceInfo( tradfri.devices[deviceId] )
@@ -20,7 +20,24 @@ function printGroupInfo( tradfri, collection ) {
 
 }
 
-module.exports = {printGroupInfo: printGroupInfo};
+function findRoom( tradfri, name ) {
+  let lowerName = name.toLowerCase();
+
+  // Look for the group
+  for (const groupId in tradfri.groups ) {
+    if( tradfri.groups[groupId].group.name.toLowerCase() === lowerName ) {
+      return tradfri.groups[groupId];
+    }
+
+    if( groupId === name ) {
+      return tradfri.groups[groupId];
+    }
+  }
+
+  return null;
+}
+
+module.exports = {printRoomInfo, findRoom};
 
 // Only run this method if invoked with "node devices.js"
 if( __filename === process.argv[1] ) {
@@ -35,8 +52,7 @@ if( __filename === process.argv[1] ) {
 
     for (const groupId in tradfri.groups ) {
       const collection = tradfri.groups[groupId];
-      // console.log( device )
-      printGroupInfo( tradfri, collection )
+      printRoomInfo( tradfri, collection )
     }
 
     tradfri.destroy()

@@ -19,40 +19,37 @@ const delay      = require( 'delay' );
   await delay( 1500 )
 
   const roomName = argv[2]
-  const sceneName = argv[3]
+  let sceneName = argv[3]
 
-  let collection = null;
+  const room = scenes.findRoom( tradfri, roomName );
 
-  // Look for the group
-  for (const groupId in tradfri.groups ) {
-    if( tradfri.groups[groupId].group.name == roomName ) {
-      collection = tradfri.groups[groupId]
-    }
-  }
-
-  if( collection == null ) {
-    console.log( "Unable to find room named", roomName)
-    process.exit(1)
+  if( room == null ) {
+    console.log( "Unable to find room named", roomName);
+    process.exit(1);
   }
 
   let scene = null;
 
+  sceneName = sceneName.toLowerCase();
   // Look for the scene
-  for (const sceneId in collection.scenes ) {
-    if( collection.scenes[sceneId].name == sceneName ) {
-      scene = collection.scenes[sceneId]
+  for (const sceneId in room.scenes ) {
+    if( room.scenes[sceneId].name.toLowerCase() === sceneName ) {
+      scene = room.scenes[sceneId]
     }
   }
 
   if( scene == null ) {
     console.log( "Unable to find scene named", sceneName )
+    process.exit(1);
   }
 
-  collection.group.client = tradfri;
-  scenes.printGroupInfo( tradfri, collection )
-  console.log( "Switching", collection.group.name, "to scene", scene.name )
-  collection.group.activateScene(scene.instanceId);
-  scenes.printGroupInfo( tradfri, collection )
+  room.group.client = tradfri;
+  scenes.printRoomInfo( tradfri, room )
+
+  console.log( "Switching", room.group.name, "to scene", scene.name )
+  room.group.activateScene(scene.instanceId);
+
+  scenes.printRoomInfo( tradfri, room )
 
   // Give the messages a chance to propogate
   await delay(1000);

@@ -48,7 +48,7 @@ const delay      = require( 'delay' );
         accessory.setBrightness( argv[position] )
         break;
       default:
-        currentDevice = tradfri.devices[argv[position]]
+        currentDevice = devices.findDevice( tradfri, argv[position] )
         if( currentDevice == null ) {
           console.log( "Unable to find device", argv[position] )
           console.log( tradfri.devices )
