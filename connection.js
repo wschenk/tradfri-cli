@@ -10,6 +10,11 @@ async function getConnection() {
   console.log( "Looking up IKEA Tradfri gateway on your network" )
   let gateway = await discoverGateway()
 
+  if( gateway == null ) {
+    console.log( "No Tradfri gateway found in local network" );
+    process.exit(1);
+  }
+
   console.log( "Connecting to", gateway.host)
   const tradfri = new TradfriClient(gateway.host)
 

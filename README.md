@@ -8,7 +8,6 @@ Look at the back of your gateway and find the security code.  We use that for th
 export IKEASECURITY=asdfadf
 ```
 
-Then clone this code and run `yarn` or `npm install`.  Then run one of the below scripts:
 
 ## Scripts:
 
