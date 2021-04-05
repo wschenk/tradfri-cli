@@ -1,2 +1,4 @@
 node_modules
+lib
 .local_git
+key.json
