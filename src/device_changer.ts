@@ -23,7 +23,8 @@ import { Accessory } from "node-tradfri-client";
 
   let position = 2;
   let currentDevice: Accessory | undefined = undefined;
-  let accessory: any = null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let accessory: any | null = null;
 
   while( position < argv.length ) {
     switch( argv[position] ) {
