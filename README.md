@@ -12,6 +12,15 @@ Create key.json with your security code
 }
 ```
 
+then
+
+```bash
+yarn install
+yarn build
+```
+
+### Scripts are located in the created "lib" folder
+
 ## Scripts:
 
 1. `node devices.js` - Connects, prints devices it knows about, and quits
