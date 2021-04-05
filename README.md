@@ -4,7 +4,7 @@ Check out https://willschenk.com/articles/2019/controlling_ikea_tradfri_with_nod
 
 Look at the back of your gateway and find the security code.  We use that for the initial challenge and then store the token in a configuration file.
 
-Create key.json with your key
+Create key.json with your security code
 
 ```json
 {
