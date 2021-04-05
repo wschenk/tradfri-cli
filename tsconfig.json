@@ -18,6 +18,9 @@
       "preserveConstEnums": true,
       "skipLibCheck": true,
       "resolveJsonModule": true,
+      "types": [
+        "node"
+      ]
     },
     "include": [
       "src/"

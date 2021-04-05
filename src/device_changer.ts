@@ -19,34 +19,35 @@ import { Accessory } from "node-tradfri-client";
 
   const tradfri = await getConnection();
   tradfri.observeDevices();
-  await delay( 1000 );
+  await delay(1000);
 
   let position = 2;
   let currentDevice: Accessory | undefined = undefined;
   let accessory: any = null;
+
   while( position < argv.length ) {
     switch( argv[position] ) {
       case "--on":
         console.log( "Turning", currentDevice?.instanceId, "on");
-        accessory.turnOn();
+        accessory?.turnOn();
         break;
       case "--off":
         console.log( "Turning", currentDevice?.instanceId, "off");
-        accessory.turnOff();
+        accessory?.turnOff();
         break;
       case "--toggle":
-        accessory.toggle();
+        accessory?.toggle();
         console.log( "toggle device", currentDevice?.instanceId );
         break;
       case "--color":
         position++;
         console.log( "Setting color of", currentDevice?.instanceId, "to", argv[position]);
-        accessory.setColor(argv[position]);
+        accessory?.setColor(argv[position]);
         break;
       case "--brightness":
         position++;
         console.log( "Setting brightness of", currentDevice?.instanceId, "to", argv[position]);
-        accessory.setBrightness( argv[position] );
+        accessory?.setBrightness(Number(argv[position]));
         break;
       default:
         currentDevice = findDevice( tradfri, argv[position] );
@@ -55,7 +56,7 @@ import { Accessory } from "node-tradfri-client";
           console.log( tradfri.devices );
           process.exit(1);
         }
-        switch( currentDevice.type ) {
+        switch(currentDevice.type) {
           case 0:
           case 4:
             console.log( "Can't control this type of device" );
@@ -77,6 +78,6 @@ import { Accessory } from "node-tradfri-client";
   }
 
   await delay(1000);
-  await tradfri.destroy();
+  tradfri.destroy();
   process.exit(0);
 })();

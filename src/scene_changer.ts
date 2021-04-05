@@ -52,6 +52,6 @@ import { findRoom, printRoomInfo } from "./scenes";
 
   // Give the messages a chance to propogate
   await delay(1000);
-  await tradfri.destroy();
+  tradfri.destroy();
   process.exit(0);
 })();

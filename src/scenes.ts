@@ -1,27 +1,24 @@
 import delay from "delay";
-import { GroupInfo, TradfriClient } from "node-tradfri-client";
+import { Group, GroupInfo, Scene, TradfriClient } from "node-tradfri-client";
 import { getConnection } from "./connection";
 import { printDeviceInfo } from "./devices";
 
-function printRoomInfo( tradfri: TradfriClient, room: any ): void {
-  console.log(room);
-  const group = room.group;
-  const scenes = room.scenes;
+function printRoomInfo( tradfri: TradfriClient, room: GroupInfo ): void {
+  const group: Group = room.group;
+  const scenes: Record<string, Scene> = room.scenes;
 
-  if(scenes[group.sceneId] !== undefined) {
-    console.log( "ROOM", group.instanceId, room.name, "Current Scene:", scenes[group.sceneId].name );
-    console.log( "DEVICES");
-    for(const deviceId of group.deviceIDs) {
-      printDeviceInfo( tradfri.devices[deviceId] );
-    }
-    console.log( "SCENES" );
-    for (const sceneId in scenes ) {
-      const scene = scenes[sceneId];
-      console.log( sceneId, scene.name ); // , scene.lightSettings )
-    }
-  
-    console.log( "----\n");
+  console.log( "ROOM", group.instanceId, group.name);
+  console.log( "DEVICES");
+  for(const deviceId of group.deviceIDs) {
+    printDeviceInfo( tradfri.devices[deviceId] );
   }
+  console.log( "SCENES" );
+  for (const sceneId in scenes ) {
+    const scene = scenes[sceneId];
+    console.log( sceneId, scene.name ); // , scene.lightSettings )
+  }
+
+  console.log( "----\n");
 
 }
 
@@ -53,7 +50,7 @@ if( __filename === process.argv[1] ) {
     tradfri.observeGroupsAndScenes();
 
     // Wait a second hopefully something will be loaded by then!
-    await delay( 1500 );
+    await delay(1500);
 
     for (const groupId in tradfri.groups ) {
       const collection = tradfri.groups[groupId];

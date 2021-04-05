@@ -8,7 +8,7 @@ function printDeviceInfo( device: Accessory ): void {
     case 4: // sensor
       console.log( device.instanceId, device.name, `battery ${device.deviceInfo.battery}%` );
       break;
-    case 2: // light
+    case 2: { // light
       const lightInfo: Light = device.lightList[0];
       const info = {
         onOff: lightInfo.onOff,
@@ -19,6 +19,7 @@ function printDeviceInfo( device: Accessory ): void {
       };
       console.log( device.instanceId, device.name, lightInfo.onOff ? "On" : "Off", JSON.stringify( info) );
       break;
+    }
     case 3: // plug
       console.log( device.instanceId, device.name, device.plugList[0].onOff ? "On" : "Off" );
       break;

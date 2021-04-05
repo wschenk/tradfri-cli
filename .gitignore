@@ -2,3 +2,4 @@ node_modules
 lib
 .local_git
 key.json
+yarn-error.log
