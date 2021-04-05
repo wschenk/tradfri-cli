@@ -2,12 +2,15 @@ Check out https://willschenk.com/articles/2019/controlling_ikea_tradfri_with_nod
 
 ## Basic usage:
 
-Look at the back of your gateway and find the security code.  We use that for the initial challenge and then store the token in a configuration file.  So once you get that token you won't need to use the environment variable.
+Look at the back of your gateway and find the security code.  We use that for the initial challenge and then store the token in a configuration file.
 
-```bash
-export IKEASECURITY=asdfadf
+Create key.json with your key
+
+```json
+{
+  "secret": "ABC123...."
+}
 ```
-
 
 ## Scripts:
 
