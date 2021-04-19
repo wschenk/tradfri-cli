@@ -11,7 +11,7 @@
       "declaration": true,
       "declarationMap": true,
       "sourceMap": true,
-      "outDir": "./lib",
+      "outDir": "./bin",
       "rootDir": "./src",
       "strict": true,
       "esModuleInterop": true,

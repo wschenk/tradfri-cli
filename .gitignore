@@ -1,5 +1,5 @@
 node_modules
-lib
+bin
 .local_git
 key.json
 yarn-error.log
