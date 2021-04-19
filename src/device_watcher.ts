@@ -6,8 +6,8 @@ function deviceUpdated(device: Accessory): void {
   printDeviceInfo(device);
 }
 
-function deviceRemoved(deviceId: string): void {
-  console.log("See you later", deviceId, "it's been great.");
+function deviceRemoved(instanceId: number): void {
+  console.log("See you later", instanceId, "it's been great.");
 }
 
 (async () => {
