@@ -1,2 +1,5 @@
 node_modules
+bin
 .local_git
+key.json
+yarn-error.log
