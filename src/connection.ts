@@ -3,7 +3,7 @@ import Conf from "conf";
 import delay from "delay";
 import { DiscoveredGateway, discoverGateway, TradfriClient } from "node-tradfri-client";
 
-const conf = new Conf();
+const conf = new Conf({projectName: "tradfri-cli"});
 
 async function getConnection(): Promise<TradfriClient> {
   console.log("Looking up IKEA Tradfri gateway on your network");
